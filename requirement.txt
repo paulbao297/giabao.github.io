@@ -1,0 +1,9 @@
+#python 3.6
+pip install opencv-python
+pip install tensorflow==1.15
+pip install keras==2.3.1
+pip install matplotlib==3.2.2
+pip install scikit-learn==0.19.1
+pip install pymongo==3.9.0
+pip install dnspython==1.16.0
+pip install pytz==2020.1
