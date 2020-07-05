@@ -34,22 +34,34 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.All_of_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.table1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.outTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timePerDayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.table2BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.All_of_time = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.table1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.loadDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.namebx = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.agebx = new System.Windows.Forms.TextBox();
+            this.majorbx = new System.Windows.Forms.TextBox();
+            this.phonebx = new System.Windows.Forms.TextBox();
+            this.mssvbx = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.idbx = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.table2BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.table2BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,57 +116,6 @@
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AutoGenerateColumns = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.All_of_time});
-            this.dataGridView2.DataSource = this.table1BindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(25, 127);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(445, 372);
-            this.dataGridView2.TabIndex = 6;
-            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
-            this.dataGridView2.SelectionChanged += new System.EventHandler(this.DataGridView2_SelectionChanged);
-            // 
-            // All_of_time
-            // 
-            this.All_of_time.DataPropertyName = "All_of_time";
-            this.All_of_time.HeaderText = "All_of_time";
-            this.All_of_time.Name = "All_of_time";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(322, 34);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 43);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Load";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "_id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "_id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // table1BindingSource
-            // 
-            this.table1BindingSource.DataSource = typeof(table1);
-            this.table1BindingSource.CurrentChanged += new System.EventHandler(this.table1BindingSource_CurrentChanged);
-            // 
             // dateDataGridViewTextBoxColumn1
             // 
             this.dateDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -191,15 +152,175 @@
             // 
             this.table2BindingSource.DataSource = typeof(table2);
             // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AutoGenerateColumns = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.All_of_time});
+            this.dataGridView2.DataSource = this.table1BindingSource;
+            this.dataGridView2.Location = new System.Drawing.Point(25, 127);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(445, 372);
+            this.dataGridView2.TabIndex = 6;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            this.dataGridView2.SelectionChanged += new System.EventHandler(this.DataGridView2_SelectionChanged);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "_id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "_id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // All_of_time
+            // 
+            this.All_of_time.DataPropertyName = "All_of_time";
+            this.All_of_time.HeaderText = "All_of_time";
+            this.All_of_time.Name = "All_of_time";
+            // 
+            // table1BindingSource
+            // 
+            this.table1BindingSource.DataSource = typeof(table1);
+            this.table1BindingSource.CurrentChanged += new System.EventHandler(this.table1BindingSource_CurrentChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(322, 34);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(95, 43);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Load";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // loadDataBindingSource
             // 
             this.loadDataBindingSource.DataSource = typeof(LoadData);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(493, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 17);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Name:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // namebx
+            // 
+            this.namebx.Location = new System.Drawing.Point(545, 12);
+            this.namebx.Name = "namebx";
+            this.namebx.Size = new System.Drawing.Size(129, 22);
+            this.namebx.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(493, 54);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 17);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Age:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(493, 89);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 17);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Major:";
+            // 
+            // agebx
+            // 
+            this.agebx.Location = new System.Drawing.Point(545, 49);
+            this.agebx.Name = "agebx";
+            this.agebx.Size = new System.Drawing.Size(129, 22);
+            this.agebx.TabIndex = 12;
+            // 
+            // majorbx
+            // 
+            this.majorbx.Location = new System.Drawing.Point(545, 86);
+            this.majorbx.Name = "majorbx";
+            this.majorbx.Size = new System.Drawing.Size(129, 22);
+            this.majorbx.TabIndex = 13;
+            // 
+            // phonebx
+            // 
+            this.phonebx.Location = new System.Drawing.Point(747, 86);
+            this.phonebx.Name = "phonebx";
+            this.phonebx.Size = new System.Drawing.Size(129, 22);
+            this.phonebx.TabIndex = 19;
+            // 
+            // mssvbx
+            // 
+            this.mssvbx.Location = new System.Drawing.Point(747, 49);
+            this.mssvbx.Name = "mssvbx";
+            this.mssvbx.Size = new System.Drawing.Size(129, 22);
+            this.mssvbx.TabIndex = 18;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(695, 89);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 17);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Phone:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(695, 54);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(50, 17);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "MSSV:";
+            // 
+            // idbx
+            // 
+            this.idbx.Location = new System.Drawing.Point(747, 12);
+            this.idbx.Name = "idbx";
+            this.idbx.Size = new System.Drawing.Size(129, 22);
+            this.idbx.TabIndex = 15;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(695, 17);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(21, 17);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "ID";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1096, 511);
+            this.Controls.Add(this.phonebx);
+            this.Controls.Add(this.mssvbx);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.idbx);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.majorbx);
+            this.Controls.Add(this.agebx);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.namebx);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
@@ -214,9 +335,9 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.table2BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.table1BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.table2BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadDataBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -243,6 +364,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn inTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn outTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn timePerDayDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox namebx;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox agebx;
+        private System.Windows.Forms.TextBox majorbx;
+        private System.Windows.Forms.TextBox phonebx;
+        private System.Windows.Forms.TextBox mssvbx;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox idbx;
+        private System.Windows.Forms.Label label8;
     }
 }
 

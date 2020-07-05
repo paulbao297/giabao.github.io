@@ -47,7 +47,7 @@ namespace App
             
         }
 
-        private Pos binary_search(string key, int start, int stop)
+        private Pos binary_search(string key, int start, int stop)  //search bin find out obj base on key
         {
             int middle = 0;
             while (start<=stop)
@@ -87,7 +87,15 @@ namespace App
             tmp = binary_search(getname, 0, doc.Count() - 1);
             get_infor_allday(tmp.start, tmp.stop, true);
 
-            //do something with getname
+            //display infor base on getname value
+            RecordData Infor_data = mongo.Get_AData(getname);
+            namebx.Text = Infor_data.Name;
+            idbx.Text = Infor_data.ID;
+            phonebx.Text = Infor_data.Phone;
+            agebx.Text = Infor_data.Age;
+            mssvbx.Text = Infor_data.MSSV;
+            majorbx.Text = Infor_data.Major;
+
 
         }
 
@@ -106,14 +114,14 @@ namespace App
             
         }
 
-        private void swap(IList<LoadData> list, int indexA, int indexB)
+        private void swap(IList<LoadData> list, int indexA, int indexB)  // swap 2 obj
         {
             var tmp = list[indexA];
             list[indexA] = list[indexB];
             list[indexB] = tmp;
         }
 
-        private void quicksort(List<LoadData> list, int start, int stop)
+        private void quicksort(List<LoadData> list, int start, int stop) // quicksort algorithm
         {
             if (start >= stop)
                 return;
@@ -154,7 +162,7 @@ namespace App
             string Name = "";
 
             int stop = start;
-            while (stop+1<doc.Count()-1)
+            while (stop+1<doc.Count()-1) // make sure that same name same date to calcu time
             {
                 if (doc[stop + 1].Name != doc[start].Name)
                     break;
@@ -208,17 +216,18 @@ namespace App
 
             }
             tb = get_info_1day(start,display);
+            // calcu timesum
             timesum = timesum.Add(tb.TimePerDay);
+            string timesum_string= string.Format("{0}:{1}:{2}", (int)timesum.TotalHours, timesum.Minutes, timesum.Seconds);
             table1 tb1 = new table1();
             tb1.Name = doc[start].Name;
             tb1._id = doc[start]._id;
-            tb1.All_of_time = timesum;
+            tb1.All_of_time = timesum_string;
             return tb1;
         }
         private void button1_Click(object sender, EventArgs e)
         {
             Is_Loading_Data = true;
-            //mongo.Get_ALLData();
             doc.Clear();
             table2BindingSource.Clear(); //clear tab2 each time click load
             table1BindingSource.Clear();
@@ -226,10 +235,9 @@ namespace App
             DateTime pick_value2 = dateTimePicker2.Value.Date;
             for (DateTime pick_value1 = dateTimePicker1.Value.Date ; pick_value1 <= pick_value2; pick_value1 = pick_value1.AddDays(1.0))
             {
-                // logic here
-                
+                // pick intime and outime
                 string value1 = pick_value1.ToString("dd/MM/yyyy");
-                var docs = mongo.Load_cham_cong(value1,"VuGiaBao");
+                var docs = mongo.Load_cham_cong(value1);
                 foreach (BsonDocument docu in docs)
                 {
 
@@ -265,6 +273,42 @@ namespace App
         {
 
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_add_Click(object sender, EventArgs e)
+        {
+            Add_newData Infor_add = new Add_newData();
+            Infor_add.ID = idbx.Text;
+            Infor_add.Name = namebx.Text;
+            Infor_add.Age = agebx.Text;
+            Infor_add.Major = majorbx.Text;
+            Infor_add.MSSV = mssvbx.Text;
+            Infor_add.Phone = phonebx.Text;
+
+            var Bson = JsonConvert.SerializeObject(Infor_add);
+            var tmp = BsonSerializer.Deserialize<BsonDocument>(Bson);
+            mongo.Insert_document(tmp);
+
+            try
+            {
+                OpenFileDialog open = new OpenFileDialog();
+                open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+                if (open.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap bit = new Bitmap(open.FileName);
+                    //pictureBox1.Image = bit;
+                }
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Failed loading image");
+            }
+
+        }
     }
 
     public class MongoDB
@@ -286,16 +330,16 @@ namespace App
             Cham_cong_load_col = db.GetCollection<BsonDocument>("Cham_cong_load");
         }
 
-        public void Get_ALLData()
+        public  RecordData Get_AData(string Name)
         {
-            var filter = Builders<BsonDocument>.Filter.Eq("ID", "VuGiaBao");
-            var Document = Cham_cong_col.Find(filter).FirstOrDefault();
+            var filter = Builders<BsonDocument>.Filter.Eq("Name", Name);
+            var Document = CSDL_col.Find(filter).FirstOrDefault(); //bsondoc type
 
-            RecordData objects = BsonSerializer.Deserialize<RecordData>(Document);
-          
-            Console.WriteLine(objects);
+            RecordData objects = BsonSerializer.Deserialize<RecordData>(Document); //transfer to recordData type
+            return objects;  // return recordData type
+            
         }
-        public List<BsonDocument> Load_cham_cong(string date, string name)
+        public List<BsonDocument> Load_cham_cong(string date)
         {
             var filter1 = Builders<BsonDocument>.Filter.Eq("Date", date);//& Builders<BsonDocument>.Filter.Eq("Name", name);
             var Document1 = Cham_cong_load_col.Find(filter1).ToList();
@@ -309,6 +353,10 @@ namespace App
             return Document2;
 
         }
+        public void Insert_document(BsonDocument name)
+        {
+            CSDL_col.InsertOne(name);
+        }
     }
 }
 
@@ -319,8 +367,17 @@ public class RecordData
     public string Age { get; set; }
     public string MSSV { get; set; }
     public string Major { get; set; }
-    public string Date { get; set; }
-    public string Time { get; set; }
+    public string Name { get; set; }
+    public string Phone { get; set; }
+}
+public class Add_newData
+{
+    public string ID { get; set; }
+    public string Age { get; set; }
+    public string MSSV { get; set; }
+    public string Major { get; set; }
+    public string Name { get; set; }
+    public string Phone { get; set; }
 }
 public class LoadData
 {
@@ -340,7 +397,8 @@ public class table1
 {
     public ObjectId _id { get; set; }
     public string Name { get; set; }
-    public TimeSpan All_of_time { get; set; }
+    public string All_of_time { get; set; }
+
 }
 
 public class Pos
