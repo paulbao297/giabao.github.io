@@ -38,14 +38,14 @@ def prepare_database():
     for folder in glob.glob("facenet_face_recognition_master/images/*"):
         for file in glob.glob(folder+"/*"):
            identity = os.path.splitext(os.path.basename(file))[0]
-           database[identity] = img_path_to_encoding(file, FRmodel)
+           database[identity] = img_path_to_encoding(file, FRmodel) #db to embedding
 
     return database
 
 
 #define recog function
 def who_is_it(image, database, model):
-    encoding = img_to_encoding(image, model)
+    encoding = img_to_encoding(image, model) #img to embedding
     
     min_dist = 100
     identity = None
@@ -73,11 +73,11 @@ thickness = 2
 
 print("prepare face_detection")
 detector = MTCNN()
-K.set_image_data_format('channels_first')
-FRmodel = faceRecoModel(input_shape=(3, 96, 96))
+K.set_image_data_format('channels_first')#set value of data format
+FRmodel = faceRecoModel(input_shape=(3, 96, 96)) #create model CNN
 
-FRmodel.compile(optimizer = 'adam', loss = triplet_loss, metrics = ['accuracy'])
-load_weights_from_FaceNet(FRmodel)
+#FRmodel.compile(optimizer = 'adam', loss = triplet_loss, metrics = ['accuracy'])
+load_weights_from_FaceNet(FRmodel) #load weights
 
 print("connect database-server")
 myclient = pymongo.MongoClient("mongodb://localhost:27017")
@@ -85,6 +85,8 @@ mydb = myclient["Attendance_checking"]
 CSDL_col = mydb["CSDL"]
 Cham_cong_col = mydb["Cham_cong"]
 #Cham_cong_col.delete_many({"ID":"VuGiaBao"})
+#Cham_cong_col.delete_many({"ID":"VuHoangNhuQuynh"})
+#Cham_cong_col.delete_many({"ID":"Thanh"})
         
 print("call database func")
 data=prepare_database()
@@ -120,8 +122,8 @@ while(True):
             #ID_found={"ID":id}
             res={"Name":id}
             #res=CSDL_col.find_one(ID_found,{"_id":0})
-            res['Date']=datetime.now().strftime("%d/%m/%Y")
-            res['Time']=datetime.now().strftime("%H:%M:%S")
+            res['Date']=datetime.now().strftime("%m/%d/%Y")
+            res['Time']=datetime.now().strftime("%H:%M")
             print("Date",res['Date'])
             print("Time",res['Time'])
             Cham_cong_col.insert_one(res)

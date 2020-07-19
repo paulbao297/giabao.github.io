@@ -26,15 +26,15 @@ def square(x):
     return tf.square(x)
 
 def zeros(shape, dtype=_FLOATX, name=None):
-    return variable(np.zeros(shape), dtype, name)
+    return variable(np.zeros(shape), dtype, name)#Return a new array of given shape and type, filled with zeros.
 
 def concatenate(tensors, axis=-1):
     if axis < 0:
         axis = axis % len(tensors[0].get_shape())
-    return tf.concat(axis, tensors)
+    return tf.concat(axis, tensors)#Concatenates tensors along one dimension.
 
 def LRN2D(x):
-    return tf.nn.lrn(x, alpha=1e-4, beta=0.75)
+    return tf.nn.lrn(x, alpha=1e-4, beta=0.75)#Local Response Normalization.
 
 def conv2d_bn(x,
               layer=None,
